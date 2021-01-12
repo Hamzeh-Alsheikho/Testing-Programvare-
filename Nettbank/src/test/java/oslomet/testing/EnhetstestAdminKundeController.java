@@ -1,9 +1,11 @@
 package oslomet.testing;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import oslomet.testing.API.AdminKontoController;
 import oslomet.testing.API.AdminKundeController;
@@ -36,4 +38,36 @@ public class EnhetstestAdminKundeController {
     @Mock
     // denne skal Mock'es
     private Sikkerhet sjekk;
+
+    @Test
+
+    public void hentAllOk(){
+        // arrage
+        Kunde kunde1 = new Kunde();
+        Kunde kunde2 = new Kunde();
+        List<Kunde> kundeliste = new ArrayList<>();
+        kundeliste.add(kunde1);
+        kundeliste.add(kunde2);
+
+        //Mockito.when(repository.hentAlleKunder()).thenReturn(kundeliste);
+
+        // act
+        List<Kunde> resultat = kundeliste;
+
+        // assert
+        Assert.assertEquals(kundeliste, resultat);
+    }
+
+    @Test
+    public void hentAlleFeil() {
+
+        // arrage
+        //Mockito.when(repository.hentAlleKunder()).thenReturn(null);
+
+        // act
+        List<Kunde> resultat = adminKundeController.hentAlle();
+
+        // assert
+        Assert.assertNull(resultat);
+    }
 }

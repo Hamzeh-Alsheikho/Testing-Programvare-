@@ -1,5 +1,6 @@
 package oslomet.testing;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -37,9 +38,5 @@ public class EnhetstestAdminKontoController {
     // denne skal Mock'es
     private Sikkerhet sjekk;
 
-    @Test
 
-    public void hentAllOk(){
-
-    }
 }
