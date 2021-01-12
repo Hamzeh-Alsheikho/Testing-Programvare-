@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import oslomet.testing.API.AdminKontoController;
 import oslomet.testing.API.BankController;
@@ -35,4 +36,10 @@ public class EnhetstestAdminKontoController {
     @Mock
     // denne skal Mock'es
     private Sikkerhet sjekk;
+
+    @Test
+
+    public void hentAllOk(){
+
+    }
 }
