@@ -7,6 +7,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import oslomet.testing.API.AdminKontoController;
 import oslomet.testing.API.BankController;
+import oslomet.testing.DAL.AdminRepository;
 import oslomet.testing.DAL.BankRepository;
 import oslomet.testing.Models.Konto;
 import oslomet.testing.Models.Kunde;
@@ -29,7 +30,7 @@ public class EnhetstestAdminKontoController {
 
     @Mock
     // denne skal Mock'es
-    private BankRepository repository;
+    private AdminRepository repository;
 
     @Mock
     // denne skal Mock'es
