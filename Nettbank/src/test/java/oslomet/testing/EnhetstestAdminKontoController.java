@@ -60,96 +60,80 @@ public class EnhetstestAdminKontoController {
         assertEquals(kontolist, resultat);
     }
 
-   /* @Test
-    public void hentAlleFeil() {
-
-        // arrage
-        when(sjekk.loggetInn()).thenReturn(null);
-
-        // act
-        List<Kunde> resultat = adminKontoController.hentAlle();
-
-        // assert
-        assertNull(resultat);
-    }
-
-
     @Test
-    public void lagreKundeOK(){
+    public void registrerKonto(){
 
-        Kunde kunde = new Kunde();
+       Konto konto = new Konto();
 
         when(sjekk.loggetInn()).thenReturn("11111111111");
 
-        Mockito.when(repository.registrerKunde(any(Kunde.class))).thenReturn("OK");
+        Mockito.when(repository.registrerKonto(any(Konto.class))).thenReturn("OK");
 
-        String resultat = adminKontoController.lagreKunde(kunde);
+        String resultat = adminKontoController.registrerKonto(konto);
 
         assertEquals("OK", resultat);
 
     }
 
     @Test
-    public void lagreKundeFeil(){
+    public void registrerKontoFeil(){
 
-        Kunde kunde = new Kunde();
+        Konto konto = new Konto();
 
         when(sjekk.loggetInn()).thenReturn(null);
 
-        String resultat = adminKontoController.lagreKunde(kunde);
+        String resultat = adminKontoController.registrerKonto(konto);
 
-        assertEquals("Ikke logget inn", resultat);
-
+        assertEquals("Ikke innlogget", resultat);
     }
 
-    @Test
-    public void endreOK(){
 
-        Kunde kunde = new Kunde();
+    @Test
+    public void endreKonto(){
+
+       Konto konto = new Konto();
 
         when(sjekk.loggetInn()).thenReturn("11111111111");
 
-        Mockito.when(repository.endreKundeInfo(any(Kunde.class))).thenReturn("OK");
+        Mockito.when(repository.endreKonto(any(Konto.class))).thenReturn("OK");
 
-        String restulat = adminKontoController.endre(kunde);
+        String restulat = adminKontoController.endreKonto(konto);
 
         assertEquals("OK", restulat);
     }
 
     @Test
-    public void endreFeil() {
+    public void endreKontoFeil() {
 
-        Kunde kunde = new Kunde();
+        Konto konto = new Konto();
 
         when(sjekk.loggetInn()).thenReturn(null);
 
-        String restulat = adminKontoController.endre(kunde);
+        String restulat = adminKontoController.endreKonto(konto);
 
-        assertEquals("Ikke logget inn", restulat);
+        assertEquals("Ikke innlogget", restulat);
     }
 
     @Test
-    public void slettOK(){
+    public void slettKontoOK(){
 
         when(sjekk.loggetInn()).thenReturn("11111111111");
 
-        Mockito.when(repository.slettKunde(any())).thenReturn("OK");
+        Mockito.when(repository.slettKonto(any())).thenReturn("OK");
 
-        String restulat = adminKundeController.slett("01010110523");
+        String restulat = adminKontoController.slettKonto("01010110523");
 
         assertEquals("OK", restulat);
     }
 
     @Test
-    public void slettFeil() {
+    public void slettKontoFeil() {
 
         when(sjekk.loggetInn()).thenReturn(null);
 
-        String restulat = adminKundeController.slett("01010110523");
+        String restulat = adminKontoController.slettKonto("01010110523");
 
-        assertEquals("Ikke logget inn", restulat);
+        assertEquals("Ikke innlogget", restulat);
     }
-
-    */
 
 }
