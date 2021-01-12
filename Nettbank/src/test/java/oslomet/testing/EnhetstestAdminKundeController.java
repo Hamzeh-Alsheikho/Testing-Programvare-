@@ -21,8 +21,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -42,7 +41,7 @@ public class EnhetstestAdminKundeController {
 
     @Test
 
-    public void hentAllOk(){
+    public void hentAllOK(){
 
         // arrage
         Kunde kunde1 = new Kunde();
@@ -51,7 +50,7 @@ public class EnhetstestAdminKundeController {
         kundeliste.add(kunde1);
         kundeliste.add(kunde2);
 
-        when(sjekk.loggetInn()).thenReturn("01010110523");
+        when(sjekk.loggetInn()).thenReturn("11111111111");
         Mockito.when(repository.hentAlleKunder()).thenReturn(kundeliste);
 
         // act
@@ -65,27 +64,55 @@ public class EnhetstestAdminKundeController {
     public void hentAlleFeil() {
 
         // arrage
-        when(sjekk.loggetInn()).thenReturn("01010110523");
-        Mockito.when(repository.hentAlleKunder()).thenReturn(null);
+        when(sjekk.loggetInn()).thenReturn(null);
 
         // act
         List<Kunde> resultat = adminKundeController.hentAlle();
 
         // assert
         assertNull(resultat);
-
     }
 
 
     @Test
-    public void endreOk(){
+    public void lagreKundeOK(){
 
         Kunde kunde = new Kunde();
 
-        when(sjekk.loggetInn()).thenReturn("01010110523");
+        when(sjekk.loggetInn()).thenReturn("11111111111");
+
+        Mockito.when(repository.registrerKunde(any(Kunde.class))).thenReturn("OK");
+
+        String resultat = adminKundeController.lagreKunde(kunde);
+
+        assertEquals("OK", resultat);
+
+    }
+
+    @Test
+    public void lagreKundeFeil(){
+
+        Kunde kunde = new Kunde();
+
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        String resultat = adminKundeController.lagreKunde(kunde);
+
+        assertEquals("Ikke logget inn", resultat);
+
+    }
+
+    @Test
+    public void endreOK(){
+
+        Kunde kunde = new Kunde();
+
+        when(sjekk.loggetInn()).thenReturn("11111111111");
+
         Mockito.when(repository.endreKundeInfo(any(Kunde.class))).thenReturn("OK");
 
         String restulat = adminKundeController.endre(kunde);
+
         assertEquals("OK", restulat);
     }
 
@@ -94,35 +121,34 @@ public class EnhetstestAdminKundeController {
 
         Kunde kunde = new Kunde();
 
-        when(sjekk.loggetInn()).thenReturn("01010110523");
-        Mockito.when(repository.endreKundeInfo(any(Kunde.class))).thenReturn("Feil");
+        when(sjekk.loggetInn()).thenReturn(null);
 
         String restulat = adminKundeController.endre(kunde);
-        assertEquals("Feil", restulat);
+
+        assertEquals("Ikke logget inn", restulat);
     }
 
     @Test
-    public void slettOk(){
+    public void slettOK(){
 
-        Kunde kunde = new Kunde();
+        when(sjekk.loggetInn()).thenReturn("11111111111");
 
-        when(sjekk.loggetInn()).thenReturn("01010110523");
         Mockito.when(repository.slettKunde(any())).thenReturn("OK");
 
         String restulat = adminKundeController.slett("01010110523");
+
         assertEquals("OK", restulat);
     }
 
     @Test
     public void slettFeil() {
 
-        Kunde kunde = new Kunde();
-
-        when(sjekk.loggetInn()).thenReturn("01010110523");
-        Mockito.when(repository.slettKunde(any())).thenReturn("Feil");
+        when(sjekk.loggetInn()).thenReturn(null);
 
         String restulat = adminKundeController.slett("01010110523");
-        assertEquals("Feil", restulat);
+
+        assertEquals("Ikke logget inn", restulat);
     }
+
 
 }
