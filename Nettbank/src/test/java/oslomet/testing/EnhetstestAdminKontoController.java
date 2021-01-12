@@ -61,9 +61,22 @@ public class EnhetstestAdminKontoController {
     }
 
     @Test
-    public void registrerKonto(){
+    public void hentAlleKontiFeil() {
 
-       Konto konto = new Konto();
+        // arrage
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        // act
+        List<Konto> resultat = adminKontoController.hentAlleKonti();
+
+        // assert
+        assertNull(resultat);
+    }
+
+    @Test
+    public void registrerKontoOK(){
+
+        Konto konto = new Konto();
 
         when(sjekk.loggetInn()).thenReturn("11111111111");
 
@@ -89,7 +102,7 @@ public class EnhetstestAdminKontoController {
 
 
     @Test
-    public void endreKonto(){
+    public void endreKontoOK(){
 
        Konto konto = new Konto();
 

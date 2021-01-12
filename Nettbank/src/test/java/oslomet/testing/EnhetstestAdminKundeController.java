@@ -135,7 +135,7 @@ public class EnhetstestAdminKundeController {
 
         Mockito.when(repository.slettKunde(any())).thenReturn("OK");
 
-        String restulat = adminKundeController.slett("01010110523");
+        String restulat = adminKundeController.slett("105010123456");
 
         assertEquals("OK", restulat);
     }
@@ -145,7 +145,7 @@ public class EnhetstestAdminKundeController {
 
         when(sjekk.loggetInn()).thenReturn(null);
 
-        String restulat = adminKundeController.slett("01010110523");
+        String restulat = adminKundeController.slett("105010123456");
 
         assertEquals("Ikke logget inn", restulat);
     }
