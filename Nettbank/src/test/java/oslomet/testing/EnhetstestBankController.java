@@ -119,7 +119,7 @@ public class EnhetstestBankController {
     public void hentSaldi_IkkLoggetInn(){
 
     }
-
+// Hamzeh part
     @Test
     public void registrerBetaling_LoggetInn(){
 
