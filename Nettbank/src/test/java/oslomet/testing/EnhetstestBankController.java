@@ -102,19 +102,26 @@ public class EnhetstestBankController {
         // assert
         assertNull(resultat);
     }
+
+    //Hitomi
     @Test
     public void hentTransaksjoner_LoggetInn(){
 
     }
+
+    //Hitomi
     @Test
     public void hentTransaksjoner_IkkLoggetInn(){
 
     }
 
+    //Hitomi
     @Test
     public void hentSaldi_LoggetInn(){
 
     }
+
+    //Hitomi
     @Test
     public void hentSaldi_IkkLoggetInn(){
 
