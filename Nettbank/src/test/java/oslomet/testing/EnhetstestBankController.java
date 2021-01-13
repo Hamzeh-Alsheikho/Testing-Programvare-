@@ -100,5 +100,58 @@ public class EnhetstestBankController {
         // assert
         assertNull(resultat);
     }
+    @Test
+    public void hentTransaktoner_LoggetInn(){
+
+    }
+    @Test
+    public void hentTransaktoner_IkkLoggetInn(){
+
+    }
+
+    @Test
+    public void hentSaldi_LoggetInn(){
+
+    }
+    @Test
+    public void hentSaldi_IkkLoggetInn(){
+
+    }
+
+    @Test
+    public void registrerBetaling_LoggetInn(){
+
+    }
+    @Test
+    public void registrerBetaling_IkkLoggetInn(){
+
+    }
+
+    @Test
+    public void hentBetalinger_LoggetInn(){
+
+    }
+    @Test
+    public void hentBetalinger_IkkLoggetInn(){
+
+    }
+
+    @Test
+    public void hentKundeInfo_LoggetInn(){
+
+    }
+    @Test
+    public void hentKundeInfo_IkkLoggetInn(){
+
+    }
+
+    @Test
+    public void endreKundeInfo_LoggetInn(){
+
+    }
+    @Test
+    public void endreKundeInfo_IkkLoggetInn(){
+
+    }
 }
 

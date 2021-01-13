@@ -41,7 +41,7 @@ public class EnhetstestAdminKundeController {
 
     @Test
 
-    public void hentAllOK(){
+    public void hentAll_LoggetInn(){
 
         // arrage
         Kunde kunde1 = new Kunde();
@@ -61,7 +61,7 @@ public class EnhetstestAdminKundeController {
     }
 
     @Test
-    public void hentAlleFeil() {
+    public void hentAlle_IkkeLoggetInn() {
 
         // arrage
         when(sjekk.loggetInn()).thenReturn(null);
@@ -75,7 +75,7 @@ public class EnhetstestAdminKundeController {
 
 
     @Test
-    public void lagreKundeOK(){
+    public void lagreKunde_LoggetInn(){
 
         Kunde kunde = new Kunde();
 
@@ -90,7 +90,7 @@ public class EnhetstestAdminKundeController {
     }
 
     @Test
-    public void lagreKundeFeil(){
+    public void lagreKunde_IkkeLoggetInn(){
 
         Kunde kunde = new Kunde();
 
@@ -103,7 +103,7 @@ public class EnhetstestAdminKundeController {
     }
 
     @Test
-    public void endreOK(){
+    public void endre_LoggetInn(){
 
         Kunde kunde = new Kunde();
 
@@ -117,7 +117,7 @@ public class EnhetstestAdminKundeController {
     }
 
     @Test
-    public void endreFeil() {
+    public void endre_IkkeLoggetInn() {
 
         Kunde kunde = new Kunde();
 
@@ -129,7 +129,7 @@ public class EnhetstestAdminKundeController {
     }
 
     @Test
-    public void slettOK(){
+    public void slett_LoggetInn(){
 
         when(sjekk.loggetInn()).thenReturn("11111111111");
 
@@ -141,7 +141,7 @@ public class EnhetstestAdminKundeController {
     }
 
     @Test
-    public void slettFeil() {
+    public void slett_IkkeLoggetInn() {
 
         when(sjekk.loggetInn()).thenReturn(null);
 
