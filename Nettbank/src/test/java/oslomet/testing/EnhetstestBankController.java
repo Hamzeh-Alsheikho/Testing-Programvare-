@@ -10,6 +10,7 @@ import oslomet.testing.API.BankController;
 import oslomet.testing.DAL.BankRepository;
 import oslomet.testing.Models.Konto;
 import oslomet.testing.Models.Kunde;
+import oslomet.testing.Models.Transaksjon;
 import oslomet.testing.Sikkerhet.Sikkerhet;
 
 import java.util.ArrayList;
@@ -73,7 +74,8 @@ public class EnhetstestBankController {
         // arrange
         List<Konto> konti = new ArrayList<>();
         Konto konto1 = new Konto("105010123456", "01010110523",
-                720, "Lønnskonto", "NOK", null);
+        720, "Lønnskonto", "NOK", null);
+
         Konto konto2 = new Konto("105010123456", "12345678901",
                 1000, "Lønnskonto", "NOK", null);
         konti.add(konto1);
@@ -106,7 +108,23 @@ public class EnhetstestBankController {
     //Hitomi
     @Test
     public void hentTransaksjoner_LoggetInn(){
+        // arrange
+        List<Transaksjon> transaksjonslist = new ArrayList<>();
+        Transaksjon transaksjon1 = new Transaksjon(1, "23456789012", 512.44, "13012021", "Bok", "Lene","12345678901");
+        Transaksjon transaksjon2 = new Transaksjon(2, "12345678901", 358.13, "15012021", "Mat", " Markus","23456789012");
 
+        transaksjonslist.add(transaksjon1);
+        transaksjonslist.add(transaksjon2);
+
+        when(sjekk.loggetInn()).thenReturn("01010110523");
+
+        when(repository.hentTransaksjoner(anyString(),anyString(),anyString())).thenReturn((Konto) transaksjonslist);
+
+        // act
+        Konto resultat = bankController.hentTransaksjoner("12345678901", "01012000", "01012100");
+
+        // assert
+        assertEquals(transaksjonslist, resultat);
     }
 
     //Hitomi

@@ -44,8 +44,10 @@ public class EnhetstestAdminKontoController {
     public void hentAllKonti_LoggetInn(){
 
         // arrage
-        Konto konto1 = new Konto();
-        Konto konto2 = new Konto();
+        Konto konto1 = new Konto("02019912345", "98765432109",
+                100000, "Dagligkonto", "NOK", null);
+        Konto konto2 = new Konto("03010098765", "23456789012",
+                20000, "Sparekonto", "NOK", null);
         List<Konto> kontolist = new ArrayList<>();
         kontolist.add(konto1);
         kontolist.add(konto2);
@@ -76,7 +78,8 @@ public class EnhetstestAdminKontoController {
     @Test
     public void registrerKonto_LoggetInn(){
 
-        Konto konto = new Konto();
+        Konto konto = new Konto("03010098765", "23456789012",
+                20000, "Sparekonto", "NOK", null);
 
         when(sjekk.loggetInn()).thenReturn("11111111111");
 
@@ -91,7 +94,8 @@ public class EnhetstestAdminKontoController {
     @Test
     public void registrerKonto_IkkeLoggetInn(){
 
-        Konto konto = new Konto();
+        Konto konto = new Konto("03010098765", "23456789012",
+                20000, "Sparekonto", "NOK", null);
 
         when(sjekk.loggetInn()).thenReturn(null);
 
@@ -104,7 +108,8 @@ public class EnhetstestAdminKontoController {
     @Test
     public void endreKonto_LoggetInn(){
 
-       Konto konto = new Konto();
+       Konto konto = new Konto("03010098765", "23456789012",
+               20000, "Sparekonto", "NOK", null);
 
         when(sjekk.loggetInn()).thenReturn("11111111111");
 
@@ -118,7 +123,8 @@ public class EnhetstestAdminKontoController {
     @Test
     public void endreKonto_IkkeLoggetInn() {
 
-        Konto konto = new Konto();
+        Konto konto = new Konto("03010098765", "23456789012",
+                20000, "Sparekonto", "NOK", null);
 
         when(sjekk.loggetInn()).thenReturn(null);
 
@@ -134,7 +140,7 @@ public class EnhetstestAdminKontoController {
 
         Mockito.when(repository.slettKonto(any())).thenReturn("OK");
 
-        String restulat = adminKontoController.slettKonto("01010110523");
+        String restulat = adminKontoController.slettKonto("23456789012");
 
         assertEquals("OK", restulat);
     }
@@ -144,7 +150,7 @@ public class EnhetstestAdminKontoController {
 
         when(sjekk.loggetInn()).thenReturn(null);
 
-        String restulat = adminKontoController.slettKonto("01010110523");
+        String restulat = adminKontoController.slettKonto("23456789012");
 
         assertEquals("Ikke innlogget", restulat);
     }

@@ -44,8 +44,12 @@ public class EnhetstestAdminKundeController {
     public void hentAll_LoggetInn(){
 
         // arrage
-        Kunde kunde1 = new Kunde();
-        Kunde kunde2 = new Kunde();
+        Kunde kunde1 = new Kunde("01010110523",
+                "Lene", "Jensen", "Askerveien 22", "3270",
+                "Asker", "22224444", "HeiHei");
+        Kunde kunde2 = new Kunde("02019912345",
+                "Markus", "Henriksen", "Munchs gate 7", "0165",
+                "Oslo", "11122233", "GodMorgen");
         List<Kunde> kundeliste = new ArrayList<>();
         kundeliste.add(kunde1);
         kundeliste.add(kunde2);
@@ -77,7 +81,9 @@ public class EnhetstestAdminKundeController {
     @Test
     public void lagreKunde_LoggetInn(){
 
-        Kunde kunde = new Kunde();
+        Kunde kunde = new Kunde("02019912345",
+                "Markus", "Henriksen", "Munchs gate 7", "0165",
+                "Oslo", "11122233", "GodMorgen");
 
         when(sjekk.loggetInn()).thenReturn("11111111111");
 
@@ -92,7 +98,9 @@ public class EnhetstestAdminKundeController {
     @Test
     public void lagreKunde_IkkeLoggetInn(){
 
-        Kunde kunde = new Kunde();
+        Kunde kunde = new Kunde("02019912345",
+                "Markus", "Henriksen", "Munchs gate 7", "0165",
+                "Oslo", "11122233", "GodMorgen");
 
         when(sjekk.loggetInn()).thenReturn(null);
 
@@ -105,7 +113,9 @@ public class EnhetstestAdminKundeController {
     @Test
     public void endre_LoggetInn(){
 
-        Kunde kunde = new Kunde();
+        Kunde kunde = new Kunde("02019912345",
+                "Markus", "Henriksen", "Munchs gate 7", "0165",
+                "Oslo", "11122233", "GodMorgen");
 
         when(sjekk.loggetInn()).thenReturn("11111111111");
 
@@ -119,7 +129,9 @@ public class EnhetstestAdminKundeController {
     @Test
     public void endre_IkkeLoggetInn() {
 
-        Kunde kunde = new Kunde();
+        Kunde kunde = new Kunde("02019912345",
+                "Markus", "Henriksen", "Munchs gate 7", "0165",
+                "Oslo", "11122233", "GodMorgen");
 
         when(sjekk.loggetInn()).thenReturn(null);
 
