@@ -103,11 +103,11 @@ public class EnhetstestBankController {
         assertNull(resultat);
     }
     @Test
-    public void hentTransaktoner_LoggetInn(){
+    public void hentTransaksjoner_LoggetInn(){
 
     }
     @Test
-    public void hentTransaktoner_IkkLoggetInn(){
+    public void hentTransaksjoner_IkkLoggetInn(){
 
     }
 
