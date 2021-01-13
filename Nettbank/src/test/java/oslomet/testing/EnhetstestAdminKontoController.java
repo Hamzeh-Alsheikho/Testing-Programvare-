@@ -41,7 +41,7 @@ public class EnhetstestAdminKontoController {
 
     @Test
 
-    public void hentAllKontiOK(){
+    public void hentAllKonti_LoggetInn(){
 
         // arrage
         Konto konto1 = new Konto();
@@ -61,7 +61,7 @@ public class EnhetstestAdminKontoController {
     }
 
     @Test
-    public void hentAlleKontiFeil() {
+    public void hentAlleKonti_IkkeLoggetInn() {
 
         // arrage
         when(sjekk.loggetInn()).thenReturn(null);
@@ -74,7 +74,7 @@ public class EnhetstestAdminKontoController {
     }
 
     @Test
-    public void registrerKontoOK(){
+    public void registrerKonto_LoggetInn(){
 
         Konto konto = new Konto();
 
@@ -89,7 +89,7 @@ public class EnhetstestAdminKontoController {
     }
 
     @Test
-    public void registrerKontoFeil(){
+    public void registrerKonto_IkkeLoggetInn(){
 
         Konto konto = new Konto();
 
@@ -102,7 +102,7 @@ public class EnhetstestAdminKontoController {
 
 
     @Test
-    public void endreKontoOK(){
+    public void endreKonto_LoggetInn(){
 
        Konto konto = new Konto();
 
@@ -116,7 +116,7 @@ public class EnhetstestAdminKontoController {
     }
 
     @Test
-    public void endreKontoFeil() {
+    public void endreKonto_IkkeLoggetInn() {
 
         Konto konto = new Konto();
 
@@ -128,7 +128,7 @@ public class EnhetstestAdminKontoController {
     }
 
     @Test
-    public void slettKontoOK(){
+    public void slettKonto_LoggetInn(){
 
         when(sjekk.loggetInn()).thenReturn("11111111111");
 
@@ -140,7 +140,7 @@ public class EnhetstestAdminKontoController {
     }
 
     @Test
-    public void slettKontoFeil() {
+    public void slettKonto_IkkeLoggetInn() {
 
         when(sjekk.loggetInn()).thenReturn(null);
 
