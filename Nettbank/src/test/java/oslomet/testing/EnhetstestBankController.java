@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import oslomet.testing.API.BankController;
 import oslomet.testing.DAL.BankRepository;
@@ -16,6 +17,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
@@ -128,20 +130,20 @@ public class EnhetstestBankController {
     }
 
     @Test
+    public void utforBetaling_LoggetInn(){
+
+    }
+    @Test
+    public void utforBetaling_IkkLoggetInn(){
+
+    }
+
+    @Test
     public void hentBetalinger_LoggetInn(){
 
     }
     @Test
     public void hentBetalinger_IkkLoggetInn(){
-
-    }
-
-    @Test
-    public void hentKundeInfo_LoggetInn(){
-
-    }
-    @Test
-    public void hentKundeInfo_IkkLoggetInn(){
 
     }
 
