@@ -148,19 +148,50 @@ public class EnhetstestBankController {
     @Test
     public void registrerBetaling_LoggetInn(){
 
+        when(sjekk.loggetInn()).thenReturn("11111111111");
+
+        Mockito.when(repository.registrerBetaling(any())).thenReturn("OK");
+
+        String resultat = bankController.registrerBetaling(null);
+
+        assertEquals("OK", resultat);
     }
     @Test
     public void registrerBetaling_IkkLoggetInn(){
 
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        String resultat = bankController.registrerBetaling(null);
+
+        assertEquals(null, resultat);
     }
 
     @Test
     public void utforBetaling_LoggetInn(){
+    List<Transaksjon> transaksjons = new ArrayList<>();
+    Transaksjon transaksjon1 = new Transaksjon();
+    Transaksjon transaksjon2 = new Transaksjon();
+    transaksjons.add(transaksjon1);
+    transaksjons.add(transaksjon2);
+    when(sjekk.loggetInn()).thenReturn("01010110523");
+    when(repository.hentBetalinger(anyString())).thenReturn(transaksjons);
+        // act
+        List<Transaksjon> resultat = bankController.hentBetalinger();
 
+        // assert
+        assertEquals(transaksjons, resultat);
     }
     @Test
     public void utforBetaling_IkkLoggetInn(){
+        // arrange
 
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        // act
+        List<Transaksjon> resultat = bankController.utforBetaling(111111);
+
+        // assert
+        assertNull(resultat);
     }
 
 //Maja
