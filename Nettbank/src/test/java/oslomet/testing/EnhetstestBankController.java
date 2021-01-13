@@ -6,6 +6,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import oslomet.testing.API.BankController;
 import oslomet.testing.DAL.BankRepository;
 import oslomet.testing.Models.Konto;
@@ -109,41 +110,76 @@ public class EnhetstestBankController {
     @Test
     public void hentTransaksjoner_LoggetInn(){
         // arrange
-        List<Transaksjon> transaksjonslist = new ArrayList<>();
-        Transaksjon transaksjon1 = new Transaksjon(1, "23456789012", 512.44, "13012021", "Bok", "Lene","12345678901");
-        Transaksjon transaksjon2 = new Transaksjon(2, "12345678901", 358.13, "15012021", "Mat", " Markus","23456789012");
 
-        transaksjonslist.add(transaksjon1);
-        transaksjonslist.add(transaksjon2);
+        Konto konto1 = new Konto("03010098765", "12345678901",
+                20000, "Sparekonto", "NOK", null);
 
         when(sjekk.loggetInn()).thenReturn("01010110523");
 
-        when(repository.hentTransaksjoner(anyString(),anyString(),anyString())).thenReturn((Konto) transaksjonslist);
+        when(repository.hentTransaksjoner(anyString(),anyString(),anyString())).thenReturn(konto1);
 
         // act
+
         Konto resultat = bankController.hentTransaksjoner("12345678901", "01012000", "01012100");
 
         // assert
-        assertEquals(transaksjonslist, resultat);
+        assertEquals(konto1, resultat);
     }
 
     //Hitomi
     @Test
     public void hentTransaksjoner_IkkLoggetInn(){
 
+        // arrange
+
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        // act
+        Konto resultat = bankController.hentTransaksjoner("12345678901", "01012000", "01012100");
+
+        // assert
+        assertNull(resultat);
     }
 
     //Hitomi
     @Test
     public void hentSaldi_LoggetInn(){
 
+        List<Konto> saldiList = new ArrayList<>();
+
+        Konto konto1 = new Konto("05010187654", "56789012345",
+                20000, "Sparekonto", "NOK", null);
+        Konto konto2 = new Konto("06010276543", "67890123456",
+                10000, "Dagligkonto", "NOK", null);
+
+        saldiList.add(konto1);
+        saldiList.add(konto2);
+
+        //
+        when(sjekk.loggetInn()).thenReturn("01010110523");
+        when(repository.hentSaldi(anyString())).thenReturn(saldiList);
+
+        //
+        List<Konto> resultat = bankController.hentSaldi();
+
+        // assert
+        assertEquals(resultat, saldiList);
     }
 
     //Hitomi
     @Test
     public void hentSaldi_IkkLoggetInn(){
+        // arrange
 
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        // act
+        List<Konto> resultat = bankController.hentSaldi();
+
+        // assert
+        assertNull(resultat);
     }
+
 // Hamzeh part
     @Test
     public void registrerBetaling_LoggetInn(){
