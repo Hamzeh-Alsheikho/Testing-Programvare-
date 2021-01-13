@@ -138,6 +138,7 @@ public class EnhetstestBankController {
 
     }
 
+//Maja
     @Test
     public void hentBetalinger_LoggetInn(){
 
