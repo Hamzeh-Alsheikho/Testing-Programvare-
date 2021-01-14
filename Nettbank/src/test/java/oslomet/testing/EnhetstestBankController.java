@@ -1,5 +1,6 @@
 package oslomet.testing;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -234,19 +235,57 @@ public class EnhetstestBankController {
     @Test
     public void hentBetalinger_LoggetInn(){
 
+        Transaksjon transaksjon1 = new Transaksjon();
+        Transaksjon transaksjon2 = new Transaksjon();
+
+        List<Transaksjon> transaksjonList = new ArrayList<>();
+
+        transaksjonList.add(transaksjon1);
+        transaksjonList.add(transaksjon2);
+
+        Mockito.when(repository.hentBetalinger(anyString())).thenReturn(transaksjonList);
+
+        List<Transaksjon> resulat = bankController.hentBetalinger();
+
+        assertEquals(transaksjonList, resulat);
+
     }
     @Test
     public void hentBetalinger_IkkLoggetInn(){
+
+        when (sjekk.loggetInn()).thenReturn(null);
+
+        List<Transaksjon> resultat = bankController.hentBetalinger();
+
+        assertNull(resultat);
 
     }
 
     @Test
     public void endreKundeInfo_LoggetInn(){
+        Kunde kunde = new Kunde();
 
+        when(sjekk.loggetInn()).thenReturn("11111111111");
+
+        Kunde kunde1 = new Kunde();
+
+        Mockito.when(repository.endreKundeInfo(any(Kunde.class))).thenReturn("OK");
+
+        String restulat = bankController.endre(kunde1);
+        Assert.assertEquals("OK", restulat);
     }
+
     @Test
     public void endreKundeInfo_IkkLoggetInn(){
 
+        Kunde kunde1 = new Kunde();
+
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        Mockito.when(repository.endreKundeInfo(any(Kunde.class))).thenReturn("Feil");
+
+        String restulat = bankController.endre(kunde1);
+        Assert.assertEquals("Feil", restulat);
     }
 }
 
