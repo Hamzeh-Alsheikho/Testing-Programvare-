@@ -184,12 +184,13 @@ public class EnhetstestBankController {
 // Hamzeh part
     @Test
     public void registrerBetaling_LoggetInn(){
+        Transaksjon transaksjon = new Transaksjon();
 
         when(sjekk.loggetInn()).thenReturn("11111111111");
 
         Mockito.when(repository.registrerBetaling(any())).thenReturn("OK");
 
-        String resultat = bankController.registrerBetaling(null);
+        String resultat = bankController.registrerBetaling(transaksjon);
 
         assertEquals("OK", resultat);
     }
