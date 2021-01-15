@@ -300,8 +300,6 @@ public class EnhetstestBankController {
 
         when(sjekk.loggetInn()).thenReturn(null);
 
-        Mockito.when(repository.endreKundeInfo(any(Kunde.class))).thenReturn("Feil");
-
         String resultat = bankController.endre(kunde1);
 
         assertNull(resultat);
