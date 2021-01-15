@@ -75,11 +75,15 @@ public class EnhetstestBankController {
     public void hentKonti_LoggetInn()  {
         // arrange
         List<Konto> konti = new ArrayList<>();
+        List<Transaksjon> transaksjonList = new ArrayList<>();
+        Transaksjon transaksjon1 = new Transaksjon(1, "01234567890", 12, "15012021", "Mat", "0", "12345678901");
+        Transaksjon transaksjon2 = new Transaksjon(2, "98765432109", 50, "20012021", "PC", "1", "87654321098");
+
         Konto konto1 = new Konto("105010123456", "01010110523",
-        720, "Lønnskonto", "NOK", null);
+        720, "Lønnskonto", "NOK", transaksjonList);
 
         Konto konto2 = new Konto("105010123456", "12345678901",
-                1000, "Lønnskonto", "NOK", null);
+                1000, "Lønnskonto", "NOK", transaksjonList);
         konti.add(konto1);
         konti.add(konto2);
 
@@ -111,9 +115,12 @@ public class EnhetstestBankController {
     @Test
     public void hentTransaksjoner_LoggetInn(){
         // arrange
+        List<Transaksjon> transaksjonList = new ArrayList<>();
+        Transaksjon transaksjon1 = new Transaksjon(1, "01234567890", 12, "15012021", "Mat", "0", "12345678901");
+        Transaksjon transaksjon2 = new Transaksjon(2, "98765432109", 50, "20012021", "PC", "1", "87654321098");
 
         Konto konto1 = new Konto("03010098765", "12345678901",
-                20000, "Sparekonto", "NOK", null);
+                20000, "Sparekonto", "NOK", transaksjonList);
 
         when(sjekk.loggetInn()).thenReturn("01010110523");
 
@@ -147,11 +154,13 @@ public class EnhetstestBankController {
     public void hentSaldi_LoggetInn(){
 
         List<Konto> saldiList = new ArrayList<>();
+        List<Transaksjon> transaksjonList = new ArrayList<>();
+        transaksjonList.add( new Transaksjon(1, "01234567890", 12, "15012021", "Mat", "0", "12345678901"));
 
         Konto konto1 = new Konto("05010187654", "56789012345",
-                20000, "Sparekonto", "NOK", null);
+                20000, "Sparekonto", "NOK", transaksjonList);
         Konto konto2 = new Konto("06010276543", "67890123456",
-                10000, "Dagligkonto", "NOK", null);
+                10000, "Dagligkonto", "NOK", transaksjonList);
 
         saldiList.add(konto1);
         saldiList.add(konto2);
@@ -164,7 +173,7 @@ public class EnhetstestBankController {
         List<Konto> resultat = bankController.hentSaldi();
 
         // assert
-        assertEquals(resultat, saldiList);
+        assertEquals(saldiList, resultat);
     }
 
     //Hitomi
