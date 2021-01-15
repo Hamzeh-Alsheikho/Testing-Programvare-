@@ -81,9 +81,11 @@ public class EnhetstestAdminKontoController {
 
     @Test
     public void registrerKonto_LoggetInn(){
+        List<Transaksjon> transaksjonList = new ArrayList<>();
+        transaksjonList.add( new Transaksjon(1, "01234567890", 12, "15012021", "Mat", "0", "12345678901"));
 
         Konto konto = new Konto("03010098765", "23456789012",
-                20000, "Sparekonto", "NOK", null);
+                20000, "Sparekonto", "NOK", transaksjonList);
 
         when(sjekk.loggetInn()).thenReturn("11111111111");
 
@@ -97,9 +99,11 @@ public class EnhetstestAdminKontoController {
 
     @Test
     public void registrerKonto_IkkeLoggetInn(){
+        List<Transaksjon> transaksjonList = new ArrayList<>();
+        transaksjonList.add( new Transaksjon(1, "01234567890", 12, "15012021", "Mat", "0", "12345678901"));
 
         Konto konto = new Konto("03010098765", "23456789012",
-                20000, "Sparekonto", "NOK", null);
+                20000, "Sparekonto", "NOK", transaksjonList);
 
         when(sjekk.loggetInn()).thenReturn(null);
 
@@ -111,9 +115,11 @@ public class EnhetstestAdminKontoController {
 
     @Test
     public void endreKonto_LoggetInn(){
+        List<Transaksjon> transaksjonList = new ArrayList<>();
+        transaksjonList.add( new Transaksjon(1, "01234567890", 12, "15012021", "Mat", "0", "12345678901"));
 
        Konto konto = new Konto("03010098765", "23456789012",
-               20000, "Sparekonto", "NOK", null);
+               20000, "Sparekonto", "NOK", transaksjonList);
 
         when(sjekk.loggetInn()).thenReturn("11111111111");
 
@@ -126,9 +132,11 @@ public class EnhetstestAdminKontoController {
 
     @Test
     public void endreKonto_IkkeLoggetInn() {
+        List<Transaksjon> transaksjonList = new ArrayList<>();
+        transaksjonList.add( new Transaksjon(1, "01234567890", 12, "15012021", "Mat", "0", "12345678901"));
 
         Konto konto = new Konto("03010098765", "23456789012",
-                20000, "Sparekonto", "NOK", null);
+                20000, "Sparekonto", "NOK", transaksjonList);
 
         when(sjekk.loggetInn()).thenReturn(null);
 

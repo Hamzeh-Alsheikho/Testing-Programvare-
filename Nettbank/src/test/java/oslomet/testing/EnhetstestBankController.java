@@ -20,8 +20,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -89,7 +88,7 @@ public class EnhetstestBankController {
 
         when(sjekk.loggetInn()).thenReturn("01010110523");
 
-        when(repository.hentKonti(anyString())).thenReturn(konti);
+        Mockito.when(repository.hentKonti(anyString())).thenReturn(konti);
 
         // act
         List<Konto> resultat = bankController.hentKonti();
@@ -124,7 +123,7 @@ public class EnhetstestBankController {
 
         when(sjekk.loggetInn()).thenReturn("01010110523");
 
-        when(repository.hentTransaksjoner(anyString(),anyString(),anyString())).thenReturn(konto1);
+        Mockito.when(repository.hentTransaksjoner(anyString(),anyString(),anyString())).thenReturn(konto1);
 
         // act
 
@@ -167,7 +166,7 @@ public class EnhetstestBankController {
 
         //
         when(sjekk.loggetInn()).thenReturn("01010110523");
-        when(repository.hentSaldi(anyString())).thenReturn(saldiList);
+        Mockito.when(repository.hentSaldi(anyString())).thenReturn(saldiList);
 
         //
         List<Konto> resultat = bankController.hentSaldi();
@@ -193,11 +192,15 @@ public class EnhetstestBankController {
 // Hamzeh part
     @Test
     public void registrerBetaling_LoggetInn(){
-        Transaksjon transaksjon = new Transaksjon();
+
+        Transaksjon transaksjon = new Transaksjon(1, "01234567890", 12, "15012021", "Mat", "1", "12345678901");
+
 
         when(sjekk.loggetInn()).thenReturn("11111111111");
 
-        Mockito.when(repository.registrerBetaling(any())).thenReturn("OK");
+        when(repository.registrerBetaling(any())).thenReturn("OK");
+
+
 
         String resultat = bankController.registrerBetaling(transaksjon);
 
@@ -216,14 +219,17 @@ public class EnhetstestBankController {
     @Test
     public void utforBetaling_LoggetInn(){
     List<Transaksjon> transaksjons = new ArrayList<>();
-    Transaksjon transaksjon1 = new Transaksjon();
-    Transaksjon transaksjon2 = new Transaksjon();
+    Transaksjon transaksjon1 = new Transaksjon(1, "01234567890", 12, "15012021", "Mat", "1", "12345678901");
+    Transaksjon transaksjon2 = new Transaksjon(2,"34567890123",60,"16012021","Strøm", "1", "67890123456");
     transaksjons.add(transaksjon1);
     transaksjons.add(transaksjon2);
+
     when(sjekk.loggetInn()).thenReturn("01010110523");
+    when(repository.utforBetaling(anyInt())).thenReturn("OK");
     when(repository.hentBetalinger(anyString())).thenReturn(transaksjons);
+
         // act
-        List<Transaksjon> resultat = bankController.hentBetalinger();
+        List<Transaksjon> resultat = bankController.utforBetaling(1);
 
         // assert
         assertEquals(transaksjons, resultat);
@@ -235,7 +241,7 @@ public class EnhetstestBankController {
         when(sjekk.loggetInn()).thenReturn(null);
 
         // act
-        List<Transaksjon> resultat = bankController.utforBetaling(111111);
+        List<Transaksjon> resultat = bankController.utforBetaling(1);
 
         // assert
         assertNull(resultat);
@@ -245,14 +251,14 @@ public class EnhetstestBankController {
     @Test
     public void hentBetalinger_LoggetInn(){
 
-        Transaksjon transaksjon1 = new Transaksjon();
-        Transaksjon transaksjon2 = new Transaksjon();
-
         List<Transaksjon> transaksjonList = new ArrayList<>();
+        Transaksjon transaksjon1 = new Transaksjon(1, "01234567890", 12, "15012021", "Mat", "1", "12345678901");
+        Transaksjon transaksjon2 = new Transaksjon(2,"34567890123",60,"16012021","Strøm", "1", "67890123456");
 
         transaksjonList.add(transaksjon1);
         transaksjonList.add(transaksjon2);
 
+        when(sjekk.loggetInn()).thenReturn("01010110523");
         Mockito.when(repository.hentBetalinger(anyString())).thenReturn(transaksjonList);
 
         List<Transaksjon> resulat = bankController.hentBetalinger();
@@ -273,11 +279,11 @@ public class EnhetstestBankController {
 
     @Test
     public void endreKundeInfo_LoggetInn(){
-        Kunde kunde = new Kunde();
+        Kunde kunde1 = new Kunde("01010110523",
+                "Lene", "Jensen", "Askerveien 22", "3270",
+                "Asker", "22224444", "HeiHei");
 
         when(sjekk.loggetInn()).thenReturn("11111111111");
-
-        Kunde kunde1 = new Kunde();
 
         Mockito.when(repository.endreKundeInfo(any(Kunde.class))).thenReturn("OK");
 
@@ -288,14 +294,17 @@ public class EnhetstestBankController {
     @Test
     public void endreKundeInfo_IkkLoggetInn(){
 
-        Kunde kunde1 = new Kunde();
+        Kunde kunde1 = new Kunde("01010110523",
+                "Lene", "Jensen", "Askerveien 22", "3270",
+                "Asker", "22224444", "HeiHei");
 
         when(sjekk.loggetInn()).thenReturn(null);
 
         Mockito.when(repository.endreKundeInfo(any(Kunde.class))).thenReturn("Feil");
 
         String restulat = bankController.endre(kunde1);
-        Assert.assertEquals("Feil", restulat);
+
+        assertNull(restulat);
     }
 }
 
