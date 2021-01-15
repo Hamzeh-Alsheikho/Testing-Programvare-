@@ -261,9 +261,9 @@ public class EnhetstestBankController {
         when(sjekk.loggetInn()).thenReturn("01010110523");
         Mockito.when(repository.hentBetalinger(anyString())).thenReturn(transaksjonList);
 
-        List<Transaksjon> resulat = bankController.hentBetalinger();
+        List<Transaksjon> resultat = bankController.hentBetalinger();
 
-        assertEquals(transaksjonList, resulat);
+        assertEquals(transaksjonList, resultat);
 
     }
     @Test
@@ -287,8 +287,8 @@ public class EnhetstestBankController {
 
         Mockito.when(repository.endreKundeInfo(any(Kunde.class))).thenReturn("OK");
 
-        String restulat = bankController.endre(kunde1);
-        Assert.assertEquals("OK", restulat);
+        String resultat = bankController.endre(kunde1);
+        Assert.assertEquals("OK", resultat);
     }
 
     @Test
@@ -302,9 +302,9 @@ public class EnhetstestBankController {
 
         Mockito.when(repository.endreKundeInfo(any(Kunde.class))).thenReturn("Feil");
 
-        String restulat = bankController.endre(kunde1);
+        String resultat = bankController.endre(kunde1);
 
-        assertNull(restulat);
+        assertNull(resultat);
     }
 }
 
