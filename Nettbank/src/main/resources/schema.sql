@@ -7,7 +7,7 @@
 --
 -- Tabellstruktur for tabell `Konto`
 --
-DROP TABLE kunde IF EXISTS;
+DROP TABLE Konto, Kunde, Poststed,Transaksjon IF EXISTS;
 
 CREATE TABLE IF NOT EXISTS `Konto` (
                                        `Kontonummer` varchar(20) NOT NULL,
