@@ -1,3 +1,5 @@
+
+
 -- Database: `Bank` DENNE MÅ VÆRE OPPRETTET FØR SCRIPTET KJØRES !!!
 --
 
@@ -5,6 +7,7 @@
 --
 -- Tabellstruktur for tabell `Konto`
 --
+DROP TABLE kunde IF EXISTS;
 
 CREATE TABLE IF NOT EXISTS `Konto` (
                                        `Kontonummer` varchar(20) NOT NULL,
