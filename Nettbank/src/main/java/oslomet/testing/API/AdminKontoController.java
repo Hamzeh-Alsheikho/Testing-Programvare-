@@ -28,7 +28,7 @@ public class AdminKontoController {
     }
 
     @PostMapping("/registrer")
-    public String registrerKonto(@RequestBody Konto konto) {
+    public String registrerKonto( Konto konto) {
         String personnummer = sjekk.loggetInn();
         if (personnummer!=null) {
             String retur = repository.registrerKonto(konto);
@@ -38,7 +38,7 @@ public class AdminKontoController {
     }
 
     @PostMapping("/endre")
-    public String endreKonto(@RequestBody Konto konto) {
+    public String endreKonto( Konto konto) {
         String personnummer = sjekk.loggetInn();
         if (personnummer!=null) {
             return repository.endreKonto(konto);
