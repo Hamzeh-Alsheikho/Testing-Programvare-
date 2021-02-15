@@ -99,27 +99,46 @@ public class EnhetstestSikkerhetController {
         assertEquals("Feil i passord", resultat);
     }
 
+
     @Test
-    public void test_sjekkLoggetInn_FeilPasswordOrPersonnummer() {
+    public void test_loggInnAdmin_OK() {
         // arrange
         when(bankRepository.sjekkLoggInn(anyString(), anyString())).thenReturn("OK");
 
         // setningen under setter ikke attributten, dvs. at det ikke er mulig å sette en attributt i dette oppsettet
-        session.setAttribute("Innlogget", "12345678901");
+        session.setAttribute("Innlogget", "Admin");
 
         // act
-        String resultat = sikkerhetContoller.sjekkLoggInn("", "");
+        String resultat = sikkerhetContoller.loggInnAdmin("Admin", "Admin");
         // assert
-        assertEquals("Feil i personnummer eller passord", resultat);
+        assertEquals("Logget inn", resultat);
     }
 
     @Test
-    public void test_LoggetInn(){
+    public void test_loggInn_FeilBrukerAdmin() {
+        // arrange
+        when(bankRepository.sjekkLoggInn(anyString(), anyString())).thenReturn("OK");
 
-        session.setAttribute("Innlogget","12345678901");
-        String resultat = sikkerhetContoller.loggetInn();
-        assertEquals("12345678901", resultat);
-        }
+        // setningen under setter ikke attributten, dvs. at det ikke er mulig å sette en attributt i dette oppsettet
+        session.setAttribute("Innlogget", "Admin");
 
+        // act
+        String resultat = sikkerhetContoller.loggInnAdmin("admin", "Admin");
+        // assert
+        assertEquals("Ikke logget inn", resultat);
     }
 
+    @Test
+    public void test_loggInn_FeilPasswordAdmin() {
+        // arrange
+        when(bankRepository.sjekkLoggInn(anyString(), anyString())).thenReturn("OK");
+
+        // setningen under setter ikke attributten, dvs. at det ikke er mulig å sette en attributt i dette oppsettet
+        session.setAttribute("Innlogget", "Admin");
+
+        // act
+        String resultat = sikkerhetContoller.loggInnAdmin("Admin", "admin");
+        // assert
+        assertEquals("Ikke logget inn", resultat);
+    }
+}
