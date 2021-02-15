@@ -54,7 +54,7 @@ public class EnhetstestAdminKundeController {
         kundeliste.add(kunde1);
         kundeliste.add(kunde2);
 
-        when(sjekk.loggetInn()).thenReturn("11111111111");
+        when(sjekk.loggetInn()).thenReturn("01010110523");
         Mockito.when(repository.hentAlleKunder()).thenReturn(kundeliste);
 
         // act
@@ -85,7 +85,7 @@ public class EnhetstestAdminKundeController {
                 "Markus", "Henriksen", "Munchs gate 7", "0165",
                 "Oslo", "11122233", "GodMorgen");
 
-        when(sjekk.loggetInn()).thenReturn("11111111111");
+        when(sjekk.loggetInn()).thenReturn("01010110523");
 
         Mockito.when(repository.registrerKunde(any(Kunde.class))).thenReturn("OK");
 
@@ -117,7 +117,7 @@ public class EnhetstestAdminKundeController {
                 "Markus", "Henriksen", "Munchs gate 7", "0165",
                 "Oslo", "11122233", "GodMorgen");
 
-        when(sjekk.loggetInn()).thenReturn("11111111111");
+        when(sjekk.loggetInn()).thenReturn("01010110523");
 
         Mockito.when(repository.endreKundeInfo(any(Kunde.class))).thenReturn("OK");
 
@@ -143,11 +143,11 @@ public class EnhetstestAdminKundeController {
     @Test
     public void slett_LoggetInn(){
 
-        when(sjekk.loggetInn()).thenReturn("11111111111");
+        when(sjekk.loggetInn()).thenReturn("01010110523");
 
         Mockito.when(repository.slettKunde(any())).thenReturn("OK");
 
-        String restulat = adminKundeController.slett("105010123456");
+        String restulat = adminKundeController.slett("01010110523");
 
         assertEquals("OK", restulat);
     }
@@ -157,7 +157,7 @@ public class EnhetstestAdminKundeController {
 
         when(sjekk.loggetInn()).thenReturn(null);
 
-        String restulat = adminKundeController.slett("105010123456");
+        String restulat = adminKundeController.slett("01010110523");
 
         assertEquals("Ikke logget inn", restulat);
     }
