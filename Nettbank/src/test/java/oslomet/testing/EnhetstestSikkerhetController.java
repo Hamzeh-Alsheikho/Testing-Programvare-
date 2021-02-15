@@ -113,8 +113,6 @@ public class EnhetstestSikkerhetController {
         assertEquals("Feil i personnummer eller passord", resultat);
     }
 
-
-
     @Test
     public void test_LoggetInn(){
 
