@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Nettbank">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/Nettbank/.mvn/wrapper" />
+      <root url="file://$PROJECT_DIR$/Nettbank/src/main/java" />
+      <root url="file://$PROJECT_DIR$/Nettbank/src/test/java" />
+    </SOURCES>
+  </library>
+</component>
