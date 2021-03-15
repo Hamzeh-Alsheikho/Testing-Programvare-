@@ -157,7 +157,7 @@ public class EnhetstestSikkerhetController {
         session.setAttribute("Innlogget","Innlogget");
         sikkerhetContoller.loggUt();
         assertNull(session.getAttribute("Innlogget"));
-        
+
     }
 
 }
